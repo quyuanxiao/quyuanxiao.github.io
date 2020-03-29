@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#fff">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "1c0d8590"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#fff">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="nginx学习笔记  (二) 时钟在走，时光飞逝，我失去了船，得到了宝藏，也失去了你。  1. openResty安装==TODO 2. hello_worldnginx 如何嵌入 lua 脚本。方法就是在nginx的配置文件nginx.conf 中使用 content_by_lua 或者 cotent_by_lua_file 指令：  content_by_lua 一般在很简单的lua脚本时使用">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx学习笔记（2）">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/nginx学习笔记（二）.html">
+<meta property="og:site_name" content="元佳の博客">
+<meta property="og:description" content="nginx学习笔记  (二) 时钟在走，时光飞逝，我失去了船，得到了宝藏，也失去了你。  1. openResty安装==TODO 2. hello_worldnginx 如何嵌入 lua 脚本。方法就是在nginx的配置文件nginx.conf 中使用 content_by_lua 或者 cotent_by_lua_file 指令：  content_by_lua 一般在很简单的lua脚本时使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-29T09:40:22.461Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx学习笔记（2）">
+<meta name="twitter:description" content="nginx学习笔记  (二) 时钟在走，时光飞逝，我失去了船，得到了宝藏，也失去了你。  1. openResty安装==TODO 2. hello_worldnginx 如何嵌入 lua 脚本。方法就是在nginx的配置文件nginx.conf 中使用 content_by_lua 或者 cotent_by_lua_file 指令：  content_by_lua 一般在很简单的lua脚本时使用">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="元佳の博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/29/nginx学习笔记（二）.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>nginx学习笔记（2） | 元佳の博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">元佳の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">点滴生活..</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-reading">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/reading/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>读书/观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/nginx学习笔记（二）.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yuan jia dong">
+      <meta itemprop="description" content="我将生命与荣耀献给守夜人，今夜如此，夜夜皆然">
+      <meta itemprop="image" content="/images/kkx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元佳の博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">nginx学习笔记（2）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-29 17:38:30 / 修改时间：17:40:22" itemprop="dateCreated datePublished" datetime="2020-03-29T17:38:30+08:00">2020-03-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/29/nginx学习笔记（二）.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/03/29/nginx学习笔记（二）.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/29/nginx学习笔记（二）.html" class="leancloud_visitors" data-flag-title="nginx学习笔记（2）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="nginx学习笔记-二"><a href="#nginx学习笔记-二" class="headerlink" title="nginx学习笔记  (二)"></a><code>nginx</code>学习笔记  (二)</h1><blockquote>
+<p>时钟在走，时光飞逝，我失去了船，得到了宝藏，也失去了你。</p>
+</blockquote>
+<h2 id="1-openResty安装"><a href="#1-openResty安装" class="headerlink" title="1. openResty安装"></a>1. <code>openResty</code>安装</h2><p>==TODO</p>
+<h2 id="2-hello-world"><a href="#2-hello-world" class="headerlink" title="2. hello_world"></a>2. hello_world</h2><p>nginx 如何嵌入 lua 脚本。方法就是在nginx的配置文件nginx.conf 中使用 content_by_lua 或者 cotent_by_lua_file 指令：</p>
+<ol>
+<li>content_by_lua 一般在很简单的lua脚本时使用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /lua &#123;</span><br><span class="line">        set $test <span class="string">"hello, world."</span>;</span><br><span class="line">        content_by_lua <span class="string">'</span></span><br><span class="line"><span class="string">                ngx.header.content_type = "text/plain";</span></span><br><span class="line"><span class="string">                ngx.say(ngx.var.test);</span></span><br><span class="line"><span class="string">        '</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ngx.say 就是打印出hello，world，本来就是c写的</p>
+<ol>
+<li>cotent_by_lua_file 适应于复杂的 lua 脚本，专门放入一个文件中：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localition /lua&#123;</span><br><span class="line"> content_by_lua_file lua/hello.lua</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>lua访问redis</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lcoaltion /test_redis&#123;</span><br><span class="line">content_by_lua_file lua/test_redis.lua</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>cat test_redis.lua</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">local redis = requre <span class="string">"resty.redis"</span></span><br><span class="line">local red = redis :<span class="keyword">new</span>()</span><br><span class="line">red.set_timeout(<span class="number">1000</span>)</span><br><span class="line">local ok,err =red:connect(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">    	ngx.say(<span class="string">"fail to connect"</span>,err)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">end</span><br><span class="line">ngx.say(<span class="string">"result"</span>,ok)</span><br><span class="line"> local res,err=red:get(<span class="string">"dog"</span>) </span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">not</span> res then</span><br><span class="line">      ngx.say(<span class="string">"failed to get doy: "</span>,err)</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line">   end</span><br><span class="line">  <span class="keyword">if</span> res == ngx.null then  </span><br><span class="line">     ngx.say(<span class="string">"dog not found"</span>)</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line">   end</span><br><span class="line">   ngx.say(<span class="string">"dog: "</span>, res)</span><br></pre></td></tr></table></figure>
+<h2 id="3-访问mysql"><a href="#3-访问mysql" class="headerlink" title="3. 访问mysql"></a>3. 访问mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost lua]# pwd</span><br><span class="line">/opt/openresty/nginx/lua</span><br><span class="line">[root@localhost lua]# cat mysql_test.lua</span><br><span class="line">local mysql = require &quot;resty.mysql&quot;</span><br><span class="line">local db, err = mysql:new()</span><br><span class="line"></span><br><span class="line">if not db then</span><br><span class="line">        ngx.say(&quot;failed to instantiate mysql: &quot;, err)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">db:set_timeout(1000)</span><br><span class="line"></span><br><span class="line">local ok, err, errno, sqlstate = db:connect&#123;</span><br><span class="line">        host = &quot;127.0.0.1&quot;,</span><br><span class="line">        port = 3306,</span><br><span class="line">        database = &quot;ngx_lua&quot;,</span><br><span class="line">        user = &quot;root&quot;,</span><br><span class="line">        password=&quot;digdeep&quot;,</span><br><span class="line">        max_packet_size = 1024 * 1024</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if not ok then</span><br><span class="line">        ngx.say(&quot;failed to connect: &quot;, err, &quot;: &quot;, errno, &quot; &quot;, sqlstate)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ngx.say(&quot;connected to mysql.&quot;)</span><br><span class="line"></span><br><span class="line">local res, err, errno, sqlstate = db:query(&quot;drop table if exists cats&quot;)</span><br><span class="line">if not res then</span><br><span class="line">        ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errno, &quot;: &quot;, sqlstate, &quot;.&quot;)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">res, err, errno, sqlstate = db:query(&quot;create table cats &quot; .. &quot;(id int not null primary key auto_increment, &quot;</span><br><span class="line">                                        .. &quot;name varchar(30))&quot;)</span><br><span class="line">if not res then</span><br><span class="line">        ngx.say(&quot;bad result: &quot;, err, &quot;: &quot;, errno, &quot;: &quot;, sqlstate, &quot;.&quot;)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ngx.say(&quot;table cats created.&quot;)</span><br><span class="line"></span><br><span class="line">res, err, errno, sqlstate = db:query(&quot;insert into cats(name) &quot; .. &quot;values (\&apos;Bob\&apos;),(\&apos;\&apos;),(null)&quot;)</span><br><span class="line">if not res then</span><br><span class="line">        ngx.say(&quot;bad request: &quot;, err, &quot;: &quot;, errno, &quot;: &quot;, sqlstate, &quot;.&quot;)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ngx.say(res.affected_rows, &quot; rows inserted into table cats &quot;, &quot;(last insert id: &quot;, res.insert_id, &quot;)&quot;)</span><br><span class="line"></span><br><span class="line">res, err, errno, sqlstate = db:query(&quot;select * from cats order by id asc&quot;, 10)</span><br><span class="line">if not res then</span><br><span class="line">        ngx.say(&quot;bad result &quot;, err, &quot;: &quot;, errno, &quot;: &quot;, sqlstate, &quot;.&quot;)</span><br><span class="line">        return</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">local cjson = require &quot;cjson&quot;</span><br><span class="line">ngx.say(&quot;result: &quot;, cjson.encode(res))</span><br><span class="line"></span><br><span class="line">local ok, err = db:set_keepalive(1000, 100)</span><br><span class="line">if not ok then</span><br><span class="line">        ngx.say(&quot;failed to set keepalive: &quot;, err)</span><br><span class="line">        return</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="4-lua-的-capture-和-capture-multi-子查询"><a href="#4-lua-的-capture-和-capture-multi-子查询" class="headerlink" title="4.lua 的 capture 和 capture_multi(子查询)"></a>4.lua 的 capture 和 capture_multi(子查询)</h2><p><strong>capture_multi 是 openresty 一个十分强大的功能</strong>。它能极大的减少前端浏览器发送的http请求的数量，突破了浏览器对于同一个服务器并发请求数量的限制，因为他可以将前端的多个http请求减少为只要一个http请求到nginx，然后nginx使用capture_multi特性，对后端发起多个异步并发请求，然后统一将结果返回给前端。下面看一个例子：</p>
+<p>首先在nginx.conf中加入下面的 location 配置，并且配置好 nginx 访问 php 的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">location /capture &#123;</span><br><span class="line">    content_by_lua_file lua/capture.lua;</span><br><span class="line">    #access_by_lua_file lua/capture.lua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    root           html;</span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>capture.lua 的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# curl localhost/capture</span><br><span class="line">connected to mysql.</span><br><span class="line">table cats created.</span><br><span class="line">3 rows inserted into table cats (last insert id: 1)</span><br><span class="line">result: [&#123;&quot;name&quot;:&quot;Bob&quot;,&quot;id&quot;:1&#125;,&#123;&quot;name&quot;:&quot;&quot;,&quot;id&quot;:2&#125;,&#123;&quot;name&quot;:null,&quot;id&quot;:3&#125;]</span><br><span class="line"></span><br><span class="line">set result: 1</span><br><span class="line">dog: an animal</span><br><span class="line"></span><br><span class="line">hello ngx_lua!!!!</span><br><span class="line"></span><br><span class="line">false</span><br><span class="line">200</span><br><span class="line">nil</span><br></pre></td></tr></table></figure>
+<p>ngx.location.capture_multi{… …} 中的多个异步并发请求可以是 nginx.conf 中配置的 location(比如 /mysql_test, /redis_test, /lua)，也可以不是 location配置的路径，比如 index.php 就不是。index.php 就是一个简单的后台php 脚本。当然也可以是一个 java 实现的后台接口。</p>
+<h2 id="5-openresty的缓存-lua-shared-dict"><a href="#5-openresty的缓存-lua-shared-dict" class="headerlink" title="5.openresty的缓存 lua_shared_dict"></a>5.openresty的缓存 lua_shared_dict</h2><p>定义一个缓存：</p>
+<p>在nginx的配置文件 nginx.conf 的 http 端下面加入指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lua_shared_dict ngx_cache 128m;</span><br></pre></td></tr></table></figure>
+<p>就定义了一个 名称为 ngx_cache 大小为128m的内存用于缓存，<code>注意该缓存是所有nginx work process所共享的</code>。</p>
+<p>在lua脚本中访问缓存：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">local ngx_cache = ngx.shared.ngx_cache</span><br><span class="line">local value = ngx_cache:get(key)</span><br><span class="line"></span><br><span class="line">local succ, err, forcible = ngx_cache:set(key, value, exptime)</span><br></pre></td></tr></table></figure>
+<p>首先在 nginx.conf的server端中加入：</p>
+<pre><code>    location /cache {
+        content_by_lua_file lua/cache.lua;
+    }
+</code></pre><p>编写cache.lua</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost lua]<span class="meta"># cat cache.lua</span></span><br><span class="line">local redis = require <span class="string">"resty.redis"</span></span><br><span class="line">local red = redis:<span class="keyword">new</span>()</span><br><span class="line"></span><br><span class="line">function set_to_cache(key, value, exptime)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exptime then</span><br><span class="line">                exptime = <span class="number">0</span></span><br><span class="line">        end</span><br><span class="line">        local ngx_cache = ngx.shared.ngx_cache</span><br><span class="line">        local succ, err, forcible = ngx_cache:<span class="built_in">set</span>(key, value, exptime)</span><br><span class="line">        <span class="keyword">return</span> succ</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function get_from_cache(key)</span><br><span class="line">        local ngx_cache = ngx.shared.ngx_cache;</span><br><span class="line">        local value = ngx_cache:get(key)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> value then</span><br><span class="line">                value = get_from_redis(key)</span><br><span class="line">                set_to_cache(key, value)</span><br><span class="line">                <span class="keyword">return</span> value</span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        ngx.say(<span class="string">"get from cache."</span>)</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function get_from_redis(key)</span><br><span class="line">        red:set_timeout(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">        local ok, err = red:connect(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to connect: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        local res, err = red:get(key)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> res then</span><br><span class="line">                ngx.say(<span class="string">"failed to get doy: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span> ngx.null</span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        ngx.say(<span class="string">"get from redis."</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function set_to_redis(key, value)</span><br><span class="line">        red:set_timeout(<span class="number">1000</span>)</span><br><span class="line">        local ok, err = red:connect(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to connect: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        local ok, err = red:<span class="built_in">set</span>(key, value)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to set to redis: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line">        <span class="keyword">return</span> ok</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">set_to_redis('dog', "Bob")</span><br><span class="line">local rs = get_from_cache('dog')</span><br><span class="line">ngx.say(rs)</span><br></pre></td></tr></table></figure>
+<p>可以使用 ab 测试一下rps(Requests per second):</p>
+<p> ab -n 1000 -c 100 -k <a href="http://127.0.0.1/cache" target="_blank" rel="noopener">http://127.0.0.1/cache</a></p>
+<h2 id="6-解决缓存失效风暴-lua-resty-lock"><a href="#6-解决缓存失效风暴-lua-resty-lock" class="headerlink" title="6.解决缓存失效风暴 lua-resty-lock"></a>6.解决缓存失效风暴 lua-resty-lock</h2><p>缓存失效风暴是指缓存因为时间过期而失效时，会导致所有的请求都去访问 后台的redis或者mysql，而导致CPU性能即刻增长的现象。所以关键是当缓存失效时，用lock保证只有一个线程去访问后台的redis或者mysql，然后更新缓存。需要使用到 lua-resty-lock 模块的加锁、解锁功能。</p>
+<p>首先在nginx.conf 的 http 端下面加入指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lua_shared_dict ngx_cache 128m;     # cache</span><br><span class="line">lua_shared_dict cache_lock 100k;    # lock for cache</span><br></pre></td></tr></table></figure>
+<p>然后在nginx.conf的server端中加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /cache_lock &#123;</span><br><span class="line">    content_by_lua_file lua/cache_lock.lua;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>cache_lock.lua代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost lua]<span class="meta"># cat cache_lock.lua</span></span><br><span class="line">local redis = require <span class="string">"resty.redis"</span></span><br><span class="line">local red = redis:<span class="keyword">new</span>()</span><br><span class="line">local resty_lock = require <span class="string">"resty.lock"</span></span><br><span class="line">local ngx_cache = ngx.shared.ngx_cache</span><br><span class="line"></span><br><span class="line">function set_to_cache(key, value, exptime)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exptime then</span><br><span class="line">                exptime = <span class="number">0</span></span><br><span class="line">        end</span><br><span class="line">        local succ, err, forcible = ngx_cache:<span class="built_in">set</span>(key, value, exptime)</span><br><span class="line">        <span class="keyword">return</span> succ</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function get_from_cache(key)</span><br><span class="line">        local ngx_cache = ngx.shared.ngx_cache;</span><br><span class="line">        local value = ngx_cache:get(key)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> value then       -- cache miss</span><br><span class="line">                local lock = resty_lock:<span class="keyword">new</span>(<span class="string">"cache_lock"</span>)</span><br><span class="line">                local elapsed, err = lock:lock(key)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> elapsed then</span><br><span class="line">                        <span class="keyword">return</span> fail(<span class="string">"failed to acquire the lock: "</span>, err)</span><br><span class="line">                end</span><br><span class="line"></span><br><span class="line">                value = get_from_redis(key)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> value then</span><br><span class="line">                        local ok, err = lock:unlock()</span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                                <span class="keyword">return</span> fail(<span class="string">"failed to unlock: "</span>, err)</span><br><span class="line">                        end</span><br><span class="line">                        ngx.say(<span class="string">"no value found"</span>)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">                end</span><br><span class="line"></span><br><span class="line">                local ok, err = ngx_cache:<span class="built_in">set</span>(key, value, <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                        local ok, err = lock:unlock()</span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                                <span class="keyword">return</span> fail(<span class="string">"failed to unlock: "</span>, err)</span><br><span class="line">                        end</span><br><span class="line">                        <span class="keyword">return</span> faile(<span class="string">"failed to update ngx_cache: "</span>, err)</span><br><span class="line">                end</span><br><span class="line"></span><br><span class="line">                local ok, err = lock:unlock()</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                        <span class="keyword">return</span> faile(<span class="string">"failed to unlock: "</span>, err)</span><br><span class="line">                end</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> value</span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        ngx.say(<span class="string">"get from cache."</span>)</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function get_from_redis(key)</span><br><span class="line">        red:set_timeout(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">        local ok, err = red:connect(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to connect: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        local res, err = red:get(key)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> res then</span><br><span class="line">                ngx.say(<span class="string">"failed to get doy: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span> ngx.null</span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        ngx.say(<span class="string">"get from redis."</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function set_to_redis(key, value)</span><br><span class="line">        red:set_timeout(<span class="number">1000</span>)</span><br><span class="line">        local ok, err = red:connect(<span class="string">"127.0.0.1"</span>, <span class="number">6379</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to connect: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line"></span><br><span class="line">        local ok, err = red:<span class="built_in">set</span>(key, value)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ok then</span><br><span class="line">                ngx.say(<span class="string">"failed to set to redis: "</span>, err)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        end</span><br><span class="line">        <span class="keyword">return</span> ok</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">set_to_redis('dog', "Bob")</span><br><span class="line">local rs = get_from_cache('dog')</span><br><span class="line">ngx.say(rs)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+          
+    </div>
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i>nginx</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/29/那些实战的演练.html" rel="prev" title="那些实战的演练">
+                 <i class="fa fa-chevron-left"></i> 那些实战的演练
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/24/nginx学习笔记（—）.html" rel="next" title="nginx学习笔记（—）">
+                nginx学习笔记（—） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/kkx.jpg" alt="yuan jia dong">
+            </a>
+            
+              <p class="site-author-name" itemprop="name">yuan jia dong</p>
+              <p class="site-description motion-element" itemprop="description">我将生命与荣耀献给守夜人，今夜如此，夜夜皆然</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/quyuanxiao" title="GitHub &rarr; https://github.com/quyuanxiao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:1170265708@qq.com" title="E-Mail &rarr; mailto:1170265708@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx学习笔记-二"><span class="nav-number">1.</span> <span class="nav-text">nginx学习笔记  (二)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-openResty安装"><span class="nav-number">1.1.</span> <span class="nav-text">1. openResty安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-hello-world"><span class="nav-number">1.2.</span> <span class="nav-text">2. hello_world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-访问mysql"><span class="nav-number">1.3.</span> <span class="nav-text">3. 访问mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-lua-的-capture-和-capture-multi-子查询"><span class="nav-number">1.4.</span> <span class="nav-text">4.lua 的 capture 和 capture_multi(子查询)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-openresty的缓存-lua-shared-dict"><span class="nav-number">1.5.</span> <span class="nav-text">5.openresty的缓存 lua_shared_dict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-解决缓存失效风暴-lua-resty-lock"><span class="nav-number">1.6.</span> <span class="nav-text">6.解决缓存失效风暴 lua-resty-lock</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuan jia dong</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+	
+    
+
+    
+  </div>
+
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.min.js"></script>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '6quM2UNCx3kOb7hJBlFyi1uq-gzGzoHsz',
+        appKey: 'M6rNTL0Pa3kPKjcFNV9Govs4',
+        placeholder: '别急，慢慢说',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "6quM2UNCx3kOb7hJBlFyi1uq-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "6quM2UNCx3kOb7hJBlFyi1uq-gzGzoHsz",
+                'X-LC-Key': "M6rNTL0Pa3kPKjcFNV9Govs4",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+<script type="text/javascript" src="/js/src/dytitle.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
